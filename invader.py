@@ -8,10 +8,10 @@ class Invader:
 
     def __init__(self, url=None):
         self.url = url
-        self.content = self.get_content()
+        self.content = self.__get_content()
         
 
-    def get_content(self):
+    def __get_content(self):
         if self.url is None:
             print('No url!')
             return False
@@ -27,7 +27,7 @@ class Invader:
         return soup
 
 
-    def extruct(self, items, field):
+    def __extruct(self, items, field):
         res = []
         for item in items:
             if field == 'text':
@@ -47,7 +47,7 @@ class Invader:
         res = []
         for key in _dict:
             items = self.content.select(_dict[key][0])
-            _dict[key] = self.extruct(items, _dict[key][1])
+            _dict[key] = self.__extruct(items, _dict[key][1])
 
         for key in _dict:
             for i in range(0, len(_dict[key])):
@@ -73,7 +73,7 @@ class Invader:
             _res = {}
             for key in _dict:
                 value = item.select(_dict[key][0])
-                value = self.extruct(value, _dict[key][1])
+                value = self.__extruct(value, _dict[key][1])
                 _res[key] = value
 
             res.append(_res)
@@ -86,7 +86,7 @@ class Invader:
             return False
 
         items = self.content.select(_arr[0])
-        res = self.extruct(items, _arr[1])
+        res = self.__extruct(items, _arr[1])
 
         return res
 
