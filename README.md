@@ -57,9 +57,7 @@ invader = Invader('http://some.site')
 After that, content of website content will be getted and saved in instace.
 
 For now, there is a only two public functions.
-* take() 
-* take_list()
----
+**take()** and **take_list()**
 
 ### take()
  For example if you have a link address of a concrete topic page of some forum, and you need to just pull topic title, or you need to get a list with all pictures sources, then you easly can use this function.
@@ -79,7 +77,7 @@ the result will be:
 ```python
 ['http://some.site/link']
 ```
----
+
 
 ### take_list()
 If you need to get each item's information of some shoping site, then use this function!
@@ -104,3 +102,4 @@ the response will be a list of dictionaries wich containing each item's image_ur
 also you can leave first argument None, if items havn't wrapper element, and just go one by one.
 **But Warning!** Be careful in that case!
 Be sure that each item have the same html elements that you want to get! Otherwise the order will be destroyed, and result going to be wrong.
+
