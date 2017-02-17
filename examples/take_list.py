@@ -8,5 +8,5 @@ res = invader.take_list('.products-wrap > a', {
     'title': ['.pr-title', 'text']
 })
 
-pprint(res)
+print(res)
 

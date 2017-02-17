@@ -2,7 +2,6 @@
 
 from bs4 import BeautifulSoup
 import requests
-from pprint import pprint
 
 
 class Invader:
@@ -11,10 +10,6 @@ class Invader:
         self.url = url
         self.content = self.get_content()
         
-
-    def lprint(self, arr):
-        pprint(arr)
-
 
     def get_content(self):
         if self.url is None:
@@ -96,15 +91,3 @@ class Invader:
         return res
 
 
-if __name__ == '__main__':
-
-    # list data pulling example
-    url = 'http://sisters.by/him/clothing/majki'
-    invader = Invader(url)
-
-    res = invader.take_list('.products-wrap > a', {
-        'img_url': ['.pr-item-wrap > img', 'src'],
-        'title': ['.pr-title', 'text']
-    })
-
-    pprint(res)

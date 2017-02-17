@@ -8,5 +8,5 @@ text = invader.take(['.content.html_format', 'text'])
 img = invader.take(['.content.html_format img', 'src'])
 
 print(text)
-invader.lprint(img)
+print(img)
 
