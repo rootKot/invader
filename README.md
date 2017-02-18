@@ -38,9 +38,9 @@ the response will be a list of dictionaries wich containing each item's image ur
 
 ```json
 [
-    {'title': 'Welcome to Python.org', 'src': 'https://www.python.org/'},
-    {'title': 'Python (programming language) - Wikipedia', 'src': 'https://en.wikipedia.org/wiki/Python_%28programming_language%29'},
-    {'title': 'Python | Codecademy', 'src': 'https://www.codecademy.com/learn/python'}
+    {"title": "Welcome to Python.org', "src": "https://www.python.org/"},
+    {"title": "Python (programming language) - Wikipedia", "src": "https://en.wikipedia.org/wiki/Python_%28programming_language%29"},
+    {"title": "Python | Codecademy", "src": "https://www.codecademy.com/learn/python"}
 ]
 ```
 
