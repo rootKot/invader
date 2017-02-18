@@ -1,19 +1,21 @@
-#!/usr/bin/python3
-
 from bs4 import BeautifulSoup
 import requests
+import dryscrape
+import sys
 
 
 class Invader:
 
-    def __init__(self, url=None):
+    def __init__(self, url=None, js=False):
         self.url = url
-        self.content = self.__get_content()
+        if js is False:
+            self.content = self.__get_content()
+        else:
+            self.content = self.__get_js_content()
         
 
     def __get_content(self):
         if self.url is None:
-            print('No url!')
             return False
 
         url = self.url
@@ -26,6 +28,27 @@ class Invader:
         soup = BeautifulSoup(resp.content, 'html.parser')
         return soup
 
+    def __get_js_content(self):
+        if self.url is None:
+            return False
+        
+        if 'linux' in sys.platform:
+            dryscrape.start_xvfb()
+
+        url = self.url
+
+        try:
+            session = dryscrape.Session()
+            session.set_attribute('auto_load_images', False)
+            session.visit(url)
+            response = session.body()
+        except Exception:
+            return False
+
+        soup = BeautifulSoup(response, 'html.parser')
+        return soup
+
+
 
     def __extruct(self, items, field):
         res = []
@@ -37,6 +60,8 @@ class Invader:
 
             res.append(prepair)
 
+        if len(res) == 1 and type(res[0]) is str:
+            return res[0] 
 
         return res
 

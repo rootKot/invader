@@ -1,8 +1,8 @@
 Invader
 ============
-### Invader is a Python simple module for data grabbing from websites.
+### Invader is a Python simple module for data grabbing from websites. Also with JavaScript support!
 
-Invader is based on BeautifulSoup
+Invader is based on BeautifulSoup and dryscrape
 
 ---
 
@@ -10,22 +10,25 @@ Dependencies
 ============
 * **[Requests](http://docs.python-requests.org/en/master/)**
 * **[Beautiful Soup 4](https://www.crummy.com/software/BeautifulSoup/)**
+* **[Dryscrape](https://github.com/niklasb/dryscrape)**
 
 Try yourself
 ============
-Just download the zip and put **invader.py** in your project directory
+* download the zip and put **invader.py** in your project directory
+* install all dependecies if you haven't
+
 
 Items list data grabbing example:
 
 ```python
 from invader import Invader
 
-url = 'http://sisters.by/him/clothing/majki'
-invader = Invader(url)
+url = 'https://duckduckgo.com/?q=python&t=hb&ia=web'
+invader = Invader(url, js=True)
 
-res = invader.take_list('.products-wrap > a', {
-    'img_url': ['.pr-item-wrap > img', 'src'],
-    'title': ['.pr-title', 'text']
+res = invader.take_list('#links .result', {
+    'title': ['.result__a', 'text'],
+    'src': ['.result__a', 'href']
 })
 
 print(res)
@@ -35,8 +38,9 @@ the response will be a list of dictionaries wich containing each item's image ur
 
 ```json
 [
-  {"img_url": ["/files/items/30735/icon_219x270.jpg"], "title": ["Поло  Vit 16 9713tr"]},
-  {"img_url": ["/files/items/30734/icon_219x240.jpg"], "title": ["Поло  Vit 16 9713tr"]}
+    {'title': 'Welcome to Python.org', 'src': 'https://www.python.org/'},
+    {'title': 'Python (programming language) - Wikipedia', 'src': 'https://en.wikipedia.org/wiki/Python_%28programming_language%29'},
+    {'title': 'Python | Codecademy', 'src': 'https://www.codecademy.com/learn/python'}
 ]
 ```
 
@@ -47,11 +51,11 @@ Documentation
 ============
 
 First of all create import Invader class from invader.
-Create instance of Invader and pass argument the url address of website.
+Create instance of Invader and pass for argument the url address of website, and js=True if need to support javascript.
 
 ```python
 from invader import Invader
-invader = Invader('http://some.site')
+invader = Invader('http://some.site', js=True)
 ```
 
 After that, content of website content will be getted and saved in instace.
@@ -75,7 +79,7 @@ res = invader.take(['.content .topic-title a', 'href'])
 the result will be:
 
 ```python
-['http://some.site/link']
+http://some.site/link
 ```
 
 
@@ -94,8 +98,8 @@ the response will be a list of dictionaries wich containing each item's image_ur
 
 ```json
 [
-  {"img_url": ["/files/items/30735/icon_219x270.jpg"], "title": ["Поло  Vit 16 9713tr"]},
-  {"img_url": ["/files/items/30734/icon_219x240.jpg"], "title": ["Поло  Vit 16 9713tr"]}
+  {"img_url": "/files/items/30735/icon_219x270.jpg", "title": "Поло  Vit 16 9713tr"},
+  {"img_url": "/files/items/30734/icon_219x240.jpg", "title": "Поло  Vit 16 9713tr"}
 ]
 ```
 
