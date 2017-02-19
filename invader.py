@@ -2,12 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 import dryscrape
 import sys
-
+import time
 
 class Invader:
 
     def __init__(self, url=None, js=False):
         self.url = url
+        self.session = None
         if js is False:
             self.content = self.__get_content()
         else:
@@ -41,6 +42,7 @@ class Invader:
             session = dryscrape.Session()
             session.set_attribute('auto_load_images', False)
             session.visit(url)
+            self.session = session
             response = session.body()
         except Exception:
             return False
@@ -48,6 +50,13 @@ class Invader:
         soup = BeautifulSoup(response, 'html.parser')
         return soup
 
+
+    def screenshot(self, path=''):
+        if self.session is None:
+            return False
+
+        name = int(time.time())
+        self.session.render('%s%s.png' % (path, name))
 
 
     def __extruct(self, items, field):

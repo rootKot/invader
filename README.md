@@ -58,14 +58,13 @@ from invader import Invader
 invader = Invader('http://some.site', js=True)
 ```
 
-After that, content of website content will be getted and saved in instace.
+After that, content of website will be getted and saved in instace.
 
-For now, there is a only two public functions.
-**take()** and **take_list()**
+### **Public functions**
 
-### take()
+### take(selector_list)
  For example if you have a link address of a concrete topic page of some forum, and you need to just pull topic title, or you need to get a list with all pictures sources, then you easly can use this function.
-**take()** function receives a one list argument, where first element of a list is a CSS selector of a html element, and second is a thing that needs you to take, and returns a list with results.
+**take()** function receives a one list argument, where first element of a list is a CSS selector of a html element, and second is a thing that needs you to take, and returns a string, or list with results.
 
 ```python
 res = invader.take(['.content .topic-title', 'text'])
@@ -83,7 +82,7 @@ http://some.site/link
 ```
 
 
-### take_list()
+### take_list(wrapper, fields_dict)
 If you need to get each item's information of some shoping site, then use this function!
 **take_list()** function receives a two arguments. First one is a string with selector of item wrapper element.
 Second argument is a dictionary with keys and with their selectors and things that we need (text, src, href, etc.)
@@ -107,3 +106,11 @@ also you can leave first argument None, if items havn't wrapper element, and jus
 **But Warning!** Be careful in that case!
 Be sure that each item have the same html elements that you want to get! Otherwise the order will be destroyed, and result going to be wrong.
 
+### screenshot(path)
+If js-is enabled, requests goes with virtual browser, using dryscrape.
+you can take a screenshot of website that you visited.
+Give a path where to save screenshot if needs.
+```python
+invader = Invader('https://google.com', js=True)
+invader.sceenshot('/var/www/screenshots/')
+```
