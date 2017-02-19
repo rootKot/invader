@@ -12,10 +12,24 @@ Dependencies
 * **[Beautiful Soup 4](https://www.crummy.com/software/BeautifulSoup/)**
 * **[Dryscrape](https://github.com/niklasb/dryscrape)**
 
-Try yourself
+Getting Started
 ============
-* download the zip and put **invader.py** in your project directory
 * install all dependecies if you haven't
+```
+$ sudo pip install requests
+```
+```
+$ sudo apt-get install python-bs4
+$ sudo pip install beautifulsoup4
+```
+```
+$ sudo apt-get install qt5-default libqt5webkit5-dev build-essential python-lxml python-pip xvfb
+$ sudo pip install dryscrape
+```
+* intall invader
+```
+$ sudo pip install invader
+```
 
 
 Items list data grabbing example:
