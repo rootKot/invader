@@ -4,3 +4,6 @@
 *.pyc
 __pycache__
 test.py
+build
+dist
+invader.egg-info
