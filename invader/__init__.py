@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import dryscrape
 import sys
 import time
 
@@ -17,8 +16,9 @@ class Invader:
         if js is False:
             self.content = self.__get_content()
         else:
+            import dryscrape
             self.content = self.__get_js_content()
-        
+
 
     def __get_content(self):
         if self.url is None:
@@ -42,7 +42,7 @@ class Invader:
     def __get_js_content(self):
         if self.url is None:
             return False
-        
+
         url = self.url
 
         try:
@@ -77,7 +77,7 @@ class Invader:
             res.append(prepair)
 
         if len(res) == 1 and type(res[0]) is str:
-            return res[0] 
+            return res[0]
 
         return res
 
@@ -99,7 +99,7 @@ class Invader:
             break
 
         return res
-        
+
 
     def take_list(self, selector=None, _dict={}):
         if selector is None: # if need to take list wihtout item wrapper
@@ -109,7 +109,7 @@ class Invader:
             return False
 
         res = []
-       
+
         for item in self.content.select(selector):
             _res = {}
             for key in _dict:
@@ -130,4 +130,3 @@ class Invader:
         res = self.__extruct(items, _arr[1])
 
         return res
-
